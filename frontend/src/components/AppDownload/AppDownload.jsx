@@ -1,4 +1,3 @@
-import React from 'react'
 import './AppDownload.css'
 import { logoAsset } from '../../assets/asset'
 
