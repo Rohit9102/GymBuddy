@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import './FoodItem.css'
 import { logoAsset } from '../../assets/asset'
 import { StoreContext } from '../../context/StoreContext'
