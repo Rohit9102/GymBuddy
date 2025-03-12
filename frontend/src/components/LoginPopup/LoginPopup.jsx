@@ -1,46 +1,84 @@
-import { useState } from 'react'
-import './LoginPopup.css'
-import { logoAsset } from '../../assets/asset'
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./LoginPopup.css";
+import { logoAsset } from "../../assets/asset";
 
-const LoginPopup = ({setShowLogin}) => {
+const LoginPopup = ({ setShowLogin }) => {
+  const [currState, setCurrState] = useState("Login");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [currState, setCurrState] = useState("Login")
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password || (currState === "Sign Up" && !name)) {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    if (currState === "Sign Up") {
+      toast.success("Account created successfully!");
+    } else {
+      toast.success("Logged in successfully!");
+    }
+  };
+
   return (
-    <div className='login-popup'>
+    <div className="login-popup">
+      <form className="login-popup-container" onSubmit={handleSubmit}>
+        <div className="login-popup-title">
+          <h2>{currState}</h2>
+          <img onClick={() => setShowLogin(false)} src={logoAsset.cross_icon} alt="" />
+        </div>
 
-        <form className="login-popup-container">
+        <div className="login-popup-inputs">
+          {currState === "Sign Up" && (
+            <input 
+              type="text" 
+              placeholder="Your name" 
+              required 
+              value={name} 
+              onChange={(e) => setName(e.target.value)} 
+            />
+          )}
+          <input 
+            type="email" 
+            placeholder="Your email" 
+            required 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+          />
+          <input 
+            type="password" 
+            placeholder="Your password" 
+            required 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+          />
+        </div>
 
-            <div className="login-popup-title">
+        <button type="submit">
+          {currState === "Sign Up" ? "Create account" : "Login"}
+        </button>
 
-                <h2>{currState}</h2>
+        <div className="login-popup-condition">
+          <input type="checkbox" required />
+          <p>By continuing, I agree to the terms of use & privacy policy.</p>
+        </div>
 
-                <img onClick={()=>setShowLogin(false)} src={logoAsset.cross_icon} alt="" />
-            </div>
+        {currState === "Login" ? (
+          <p>Create a new account? <span onClick={() => setCurrState("Sign Up")}>Click here</span></p>
+        ) : (
+          <p>Already have an account? <span onClick={() => setCurrState("Login")}>Login here</span></p>
+        )}
+      </form>
 
-            <div className="login-popup-inputs">
-                {currState==="Login"?<></>:<input type="text" placeholder='Your name' required />}
-                <input type="email" placeholder='Your email' required />
-                <input type="password" placeholder='Your password' required />
-
-            </div>
-
-            <button>{currState==="Sign Up"?"Create account":"Login"}</button>
-
-            <div className="login-popup-condition">
-                <input type="checkbox" required/>
-                <p>By continuing, i agreeto the terms of use & privacy policy.</p>
-            </div>
-
-            {currState==="Login"
-            ?<p>Create a new account? <span onClick={ ()=>setCurrState("Sign Up")}>Click here</span></p>
-            :<p>Already have an account <span onClick={ ()=>setCurrState("Login")}>Login here</span></p>
-            }
-
-
-        </form>
+      {/* Toast Notification Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
-  )
-}
+  );
+};
 
-export default LoginPopup
+export default LoginPopup;
