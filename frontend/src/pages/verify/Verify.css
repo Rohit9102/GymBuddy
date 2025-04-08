@@ -1,0 +1,20 @@
+.verify {  /* ✅ Corrected class name */
+    min-height: 60vh;
+    display: grid;
+    place-items: center;  /* ✅ Centers the spinner */
+}
+
+.verify .spinner {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #bdbdbd;
+    border-top-color: #f84b0a;
+    border-radius: 50%;
+    animation: rotate 1s linear infinite;  /* ✅ Smooth Rotation */
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
