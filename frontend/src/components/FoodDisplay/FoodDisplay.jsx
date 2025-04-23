@@ -18,15 +18,17 @@ const FoodDisplay = ({category}) => {
               if(category==="All" || category===item.category){
 
                 return <FoodItem
-
                 key={index}
                 id={item._id}
                 name={item.name}
                 description={item.description}
                 price={item.price}
                 image={item.image}
-                
-                />
+                quantity={item.quantity}
+                protein={item.protein}
+                carb={item.carb}
+                cal={item.cal}
+              />
                 
               }
                 

@@ -8,6 +8,13 @@ import cartRouter from "./routes/cartRoutes.js";
 import orderRouter from "./routes/orderRoute.js";
 
 
+import profileRouter from "./routes/profileRoute.js"
+
+
+import authRouter from "./routes/authRoute.js"; 
+
+
+
 const app = express();
 const port = 4000
 
@@ -27,6 +34,13 @@ app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
 
 
+app.use('/api/profile', profileRouter);
+
+
+app.use('/auth', authRouter); 
+
+
+
 app.get("/",(req, res)=>{
     res.send("API Working")
 })
@@ -35,5 +49,8 @@ app.get("/",(req, res)=>{
 app.listen(port, ()=>{
     console.log(`Server Started on http://localhost:${port}`);
 })
+
+
+
 
 

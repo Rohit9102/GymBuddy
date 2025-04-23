@@ -12,8 +12,6 @@ const StoreContextProvider = (props) => {
 
     const [food_list, setFoodList] = useState([])
 
-
-
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
@@ -33,10 +31,6 @@ const StoreContextProvider = (props) => {
             await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
         }
     };
-
-    // useEffect(() => {
-    //     console.log(cartItems);
-    // }, [cartItems]);
 
     const getTotalCartAmount = () => {
 
@@ -65,8 +59,6 @@ const StoreContextProvider = (props) => {
         setCartItems(response.data.cartData);
     }
 
-
-
     useEffect(() => {
  
         async function loadData() {
@@ -80,8 +72,6 @@ const StoreContextProvider = (props) => {
         }
         loadData();
     }, [])
-
-
 
     const contextValue = {
         food_list,
@@ -103,3 +93,5 @@ const StoreContextProvider = (props) => {
 };
 
 export default StoreContextProvider;
+
+
