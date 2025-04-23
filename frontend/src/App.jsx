@@ -18,7 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
-  const url = "http://localhost:4000";
+  const url = "https://gymbuddy-backend-ylfz.onrender.com";
 
 
 
